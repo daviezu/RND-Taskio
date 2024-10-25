@@ -3,9 +3,6 @@ const express = require("express");
 
 require("dotenv").config();
 
-// routes
-const userRoutes = require("./routes/user");
-
 const app = express();
 
 // connect do database
@@ -20,8 +17,6 @@ mongoose
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Taskio");
