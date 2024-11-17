@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const cookieParser = require("cookie-parser");
 
 require("dotenv").config();
 
@@ -21,6 +22,7 @@ mongoose
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/user", userRoutes);
 app.use("/task", taskRoutes);
