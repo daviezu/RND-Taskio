@@ -27,12 +27,14 @@ const login = async (req, res) => {
       throw Error("Invalid login credentials");
     }
 
-    const token = createToken(User._id);
+    const token = createToken(user._id);
     res.cookie("auth_token", token, {
       maxAge: 2 * 86400000,
     });
 
-    res.status(200).json({ message: "Login Success", username, token });
+    res
+      .status(200)
+      .json({ message: "Login Success", userID: user._id, username, token });
   } catch (error) {
     res
       .status(500)
@@ -66,7 +68,7 @@ const register = async (req, res) => {
       createdAt,
     });
 
-    const token = createToken(User._id);
+    const token = createToken(user._id);
     res.cookie("auth_token", token, {
       maxAge: 2 * 86400000, // expired in 2 days
     });
